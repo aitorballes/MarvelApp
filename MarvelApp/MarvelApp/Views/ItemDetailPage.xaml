@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:MarvelApp.ViewModels;assembly=MarvelApp"
+             xmlns:marvelApp="clr-namespace:MarvelApp;assembly=MarvelApp"
+             xmlns:controls="clr-namespace:MarvelApp.Controls;assembly=MarvelApp"
+             xmlns:i18N="clr-namespace:MarvelApp.I18N;assembly=MarvelApp"
+             xmlns:converters="clr-namespace:MarvelApp.Converters;assembly=MarvelApp"
+             x:Class="MarvelApp.Views.ItemDetailPage"
+             x:DataType="viewModels:ItemDetailViewModel">
+    <ContentPage.Resources>
+        <converters:BooleanToObjectConverter
+            x:Key="IsFavouriteToOpacity"
+            x:TypeArguments="x:Double"
+            FalseObject="0.5"
+            TrueObject="1.0" />
+    </ContentPage.Resources>
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal"
+                     Spacing="{x:Static marvelApp:Theme.MediumSpacing}">
+            <controls:CustomButton
+                ImageSource="ic_back"
+                VerticalOptions="Center"
+                HorizontalOptions="Start"
+                Command="{Binding NavigateBackCommand}"
+                Style="{StaticResource IconButtonStyle}" />
+            <Label Text="{Binding Item.Title}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center" />
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="{x:Static marvelApp:Theme.MediumSpacing}"
+                         Padding="{x:Static marvelApp:Theme.MediumPadding}">
+                <Frame>
+                    <Grid Padding="{x:Static marvelApp:Theme.SmallPadding}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image Grid.Row="0" Grid.Column="0" Source="{Binding Item.ImagePath}"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Start"
+                               Aspect="AspectFit" />
+
+                        <controls:CustomButton Grid.Row="0" Grid.Column="1"
+                                               ImageSource="ic_favourite"
+                                               VerticalOptions="Start"
+                                               HorizontalOptions="End"
+                                               Opacity="{Binding IsFavourite, Converter={StaticResource  IsFavouriteToOpacity}}"
+                                               Command="{Binding AddOrRemoveCommand}" />
+
+                        <StackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                            <Label Text="{x:Static i18N:AppTexts.ItemDetailPage_Title_Label}"
+                                   Style="{x:StaticResource SmallLabelStyle}" />
+                            <Label Text="{Binding Item.Title}"
+                                   LineBreakMode="WordWrap"
+                                   Style="{x:StaticResource SmallLightLabelStyle}" />
+                            <Label Text="{x:Static i18N:AppTexts.ItemDetailPage_Date_Label}"
+                                   Style="{x:StaticResource SmallLabelStyle}" />
+                            <Label Text="{Binding Item.ModifiedDate}"
+                                   Style="{x:StaticResource SmallLightLabelStyle}" />
+                            <Label Text="{x:Static i18N:AppTexts.ItemDetailPage_Description_Label}"
+                                   Style="{x:StaticResource SmallLabelStyle}" />
+                            <Label Text="{Binding Item.Description}"
+                                   LineBreakMode="WordWrap"
+                                   Style="{x:StaticResource SmallLightLabelStyle}" />
+
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>

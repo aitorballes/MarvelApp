@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:views="clr-namespace:MarvelApp.Views;assembly=MarvelApp"
+            xmlns:androidSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            xmlns:marvelApp="clr-namespace:MarvelApp;assembly=MarvelApp"
+            androidSpecific:TabbedPage.ToolbarPlacement="Bottom"
+            androidSpecific:TabbedPage.IsSwipePagingEnabled="False"
+            BackgroundColor="{x:Static marvelApp:Theme.TabBarBackgroundColor}"
+            BarBackgroundColor="{x:Static marvelApp:Theme.TabBarBackgroundColor}"
+            SelectedTabColor="{x:Static marvelApp:Theme.PrimaryColor}"
+            UnselectedTabColor="{x:Static marvelApp:Theme.SecondaryColor}"
+            x:Class="MarvelApp.Views.RootPage">
+    <views:HomePage/>
+    <views:SearchPage/>
+    <views:FavouritesPage/>
+
+</TabbedPage>

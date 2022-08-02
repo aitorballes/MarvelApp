@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:MarvelApp.Models;assembly=MarvelApp"
+             xmlns:controls="clr-namespace:MarvelApp.Controls;assembly=MarvelApp"
+             xmlns:i18N="clr-namespace:MarvelApp.I18N;assembly=MarvelApp"
+             xmlns:viewModels="clr-namespace:MarvelApp.ViewModels;assembly=MarvelApp"
+             xmlns:marvelApp="clr-namespace:MarvelApp;assembly=MarvelApp"
+             x:Class="MarvelApp.Views.FavouritesPage"
+             x:DataType="viewModels:FavouritesViewModel"
+             Title="{x:Static i18N:AppTexts.FavouritesPage_Title}"
+             IconImageSource="ic_favourite">
+    <ContentPage.Content>
+        <StackLayout Padding="{x:Static marvelApp:Theme.MediumPadding}"
+                     Spacing="{x:Static marvelApp:Theme.MediumSpacing}"
+                     Margin="{x:Static marvelApp:Theme.StandardTopPadding}">
+            <Label Text="{x:Static i18N:AppTexts.FavouritesPage_List_Title}" />
+            <Frame>
+                <CollectionView SelectionMode="Single"
+                                ItemsSource="{Binding Items}"
+                                SelectedItem="{Binding SelectedItem}"
+                                SelectionChangedCommand="{Binding SelectItemCommand}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:ItemModel">
+                            <controls:ListCellTemplate ImageSource="{Binding ImagePath}"
+                                                       Title="{Binding Title}"
+                                                       Subtitle="{Binding ModifiedDate}" />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <ContentView>
+                            <StackLayout HorizontalOptions="CenterAndExpand"
+                                         VerticalOptions="CenterAndExpand">
+                                <Label Text="{x:Static i18N:AppTexts.FavouritesPage_Empty_Label}"
+                                       LineBreakMode="WordWrap"
+                                       HorizontalOptions="Fill"
+                                       HorizontalTextAlignment="Center" />
+                            </StackLayout>
+                        </ContentView>
+                    </CollectionView.EmptyView>
+
+
+                </CollectionView>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

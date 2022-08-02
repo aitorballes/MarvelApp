@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18N="clr-namespace:MarvelApp.I18N;assembly=MarvelApp"
+             xmlns:viewModels="clr-namespace:MarvelApp.ViewModels;assembly=MarvelApp"
+             xmlns:models="clr-namespace:MarvelApp.Models;assembly=MarvelApp"
+             xmlns:marvelApp="clr-namespace:MarvelApp;assembly=MarvelApp"
+             xmlns:controls="clr-namespace:MarvelApp.Controls;assembly=MarvelApp"
+             xmlns:converters="clr-namespace:MarvelApp.Converters;assembly=MarvelApp"
+             x:Class="MarvelApp.Views.HomePage"
+             x:DataType="viewModels:HomeViewModel"
+             Title="{x:Static i18N:AppTexts.HomePage_Title}"
+             IconImageSource="ic_home">
+    <ContentPage.Content>
+        <ScrollView VerticalScrollBarVisibility="Never">
+            <Grid>
+                <StackLayout IsVisible="{Binding IsLoaded}"
+                             Padding="{x:Static marvelApp:Theme.MediumPadding}"
+                             Spacing="{x:Static marvelApp:Theme.MediumSpacing}"
+                             Margin="{x:Static marvelApp:Theme.StandardTopPadding}">
+
+                    <Label Text="{x:Static i18N:AppTexts.HomePage_ComicsList_Title}"
+                           Style="{x:StaticResource RegularLabelStyle}" />
+
+
+                    <Frame HeightRequest="130">
+                        <CollectionView x:Name="ComicsList"
+                                        SelectionMode="Single"
+                                        ItemsSource="{Binding Comics}"
+                                        SelectedItem="{Binding SelectedItem}"
+                                        SelectionChangedCommand="{Binding SelectItemCommand}">
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Horizontal" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="models:ItemModel">
+                                    <controls:ItemTemplate ImageSource="{Binding ImagePath}"
+                                                           Title="{Binding Title}" />
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+
+                        </CollectionView>
+                    </Frame>
+
+                    <Label Text="{x:Static i18N:AppTexts.HomePage_SeriesList_Title}" />
+
+                    <Frame HeightRequest="360">
+                        <CollectionView SelectionMode="Single"
+                                        ItemsSource="{Binding Series}"
+                                        SelectedItem="{Binding SelectedItem}"
+                                        SelectionChangedCommand="{Binding SelectItemCommand}"
+                                        >
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Vertical" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="models:ItemModel">
+                                    <controls:ListCellTemplate ImageSource="{Binding ImagePath}"
+                                                               Title="{Binding Title}"
+                                                               Subtitle="{Binding ModifiedDate}" />
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+
+                        </CollectionView>
+                    </Frame>
+
+                </StackLayout>
+                <controls:CustomActivityIndicator IsVisible="{Binding IsBusy}"
+                                                  Color="{x:Static marvelApp:Theme.PrimaryColor}"
+                                                  HorizontalOptions="CenterAndExpand"
+                                                  VerticalOptions="CenterAndExpand" />
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

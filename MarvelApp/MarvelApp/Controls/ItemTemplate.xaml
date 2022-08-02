@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:marvelApp="clr-namespace:MarvelApp;assembly=MarvelApp"
+             xmlns:controls="clr-namespace:MarvelApp.Controls;assembly=MarvelApp"
+             xmlns:converters="clr-namespace:MarvelApp.Converters;assembly=MarvelApp"
+             x:Class="MarvelApp.Controls.ItemTemplate"
+             x:Name="ThisControl"
+             WidthRequest="120">
+    <StackLayout.Resources>
+        <converters:ImageSourceConverter
+            x:Key="ImageSourceConverter" />
+    </StackLayout.Resources>
+    <Grid ColumnSpacing="{x:Static marvelApp:Theme.SmallSpacing}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <StackLayout Grid.Column="0">
+             <Image Source="{Binding ImageSource, Source={x:Reference ThisControl}, Converter={StaticResource ImageSourceConverter}}"
+                            HeightRequest="100"
+                            WidthRequest="80"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Aspect="AspectFit" />
+            <Label Text="{Binding Title, Source={x:Reference ThisControl}}"
+                   VerticalOptions="Center"
+                   WidthRequest="120"
+                   Style="{x:StaticResource MiniLabelStyle}" />
+        </StackLayout>
+       
+        <controls:DividerVertical Grid.Column="1" 
+                                  Margin="{x:Static marvelApp:Theme.MediumRightPadding}"/>
+    </Grid>
+
+</StackLayout>

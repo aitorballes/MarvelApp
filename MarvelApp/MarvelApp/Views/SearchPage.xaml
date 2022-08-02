@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:marvelApp="clr-namespace:MarvelApp;assembly=MarvelApp"
+             xmlns:viewModels="clr-namespace:MarvelApp.ViewModels;assembly=MarvelApp"
+             xmlns:i18N="clr-namespace:MarvelApp.I18N;assembly=MarvelApp"
+             xmlns:controls="clr-namespace:MarvelApp.Controls;assembly=MarvelApp"
+             xmlns:models="clr-namespace:MarvelApp.Models;assembly=MarvelApp"
+             xmlns:converters="clr-namespace:MarvelApp.Converters;assembly=MarvelApp"
+             x:Class="MarvelApp.Views.SearchPage"
+             x:DataType="viewModels:SearchViewModel"
+             Title="{x:Static i18N:AppTexts.SearchPage_Title}"
+             IconImageSource="ic_search.png">
+    <ContentPage.Resources>
+        <converters:BooleanToObjectConverter
+            x:Key="ComicsToOpacity"
+            x:TypeArguments="x:Double"
+            FalseObject="0.5"
+            TrueObject="1.0" />
+        <converters:BooleanToObjectConverter
+            x:Key="SeriesToOpacity"
+            x:TypeArguments="x:Double"
+            FalseObject="1.0"
+            TrueObject="0.5" />
+       
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid BackgroundColor="{x:Static marvelApp:Theme.SearchEntryBackGroundColor}"
+                  Padding="{x:Static marvelApp:Theme.SmallPadding}"
+                  Margin="{OnPlatform iOS={x:Static marvelApp:Theme.LargeTopPadding}}"
+                  RowSpacing="{x:Static marvelApp:Theme.SmallSpacing}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Entry Grid.Column="0" Grid.Row="0"
+                       Text="{Binding SearchText}"
+                       Placeholder="{x:Static i18N:AppTexts.SearchPage_SearchEntry_Placeholder}"
+                       TextColor="{x:Static marvelApp:Theme.PrimaryColor}"
+                       IsEnabled="{Binding IsNotBusy}"
+                       PlaceholderColor="{x:Static marvelApp:Theme.PrimaryColor}"
+                       BackgroundColor="{x:Static marvelApp:Theme.PageBackgroundColor}"
+                       HorizontalOptions="FillAndExpand" />
+                <Image Grid.Column="1" Grid.Row="0"
+                       Source="ic_search"
+                       HorizontalOptions="End"
+                       VerticalOptions="Center" />
+
+                <StackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                             Orientation="Horizontal"
+                             Spacing="{x:Static marvelApp:Theme.MediumSpacing}">
+                    <Label Text="{x:Static i18N:AppTexts.SearchPage_SearchType_Label}"
+                           VerticalOptions="Center"
+                           Style="{x:StaticResource SmallLabelStyle}" />
+
+                    <controls:CustomButton Text="{x:Static i18N:AppTexts.SearchPage_Comics_Button}"
+                                           VerticalOptions="Center"
+                                           Opacity="{Binding ComicsSearch, Converter={StaticResource  ComicsToOpacity}}"
+                                           Command="{Binding ChangeSearchTypeCommand}"
+                                           Style="{x:StaticResource PrimaryButtonStyle}" />
+
+                    <controls:CustomButton Text="{x:Static i18N:AppTexts.SearchPage_Series_Button}"
+                                           VerticalOptions="Center"
+                                           Command="{Binding ChangeSearchTypeCommand}"
+                                           Opacity="{Binding ComicsSearch, Converter={StaticResource SeriesToOpacity}}"
+                                           Style="{x:StaticResource PrimaryButtonStyle}" />
+                </StackLayout>
+
+                <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                             IsVisible="{Binding IsNotBusy}"
+                             Padding="{x:Static marvelApp:Theme.MediumPadding}">
+                    <Frame>
+                        <CollectionView SelectionMode="Single"
+                                        ItemsSource="{Binding Items}"
+                                        SelectedItem="{Binding SelectedItem}"
+                                        SelectionChangedCommand="{Binding SelectItemCommand}">
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Vertical" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="models:ItemModel">
+                                    <controls:ListCellTemplate ImageSource="{Binding ImagePath}"
+                                                               Title="{Binding Title}"
+                                                               Subtitle="{Binding ModifiedDate}" />
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                            <CollectionView.EmptyView>
+                                <ContentView>
+                                    <StackLayout HorizontalOptions="CenterAndExpand"
+                                                 VerticalOptions="CenterAndExpand">
+                                        <Label Text="{x:Static i18N:AppTexts.SearchPage_Empty_Label}"
+                                               LineBreakMode="WordWrap"
+                                               HorizontalOptions="Fill"
+                                               HorizontalTextAlignment="Center" />
+                                    </StackLayout>
+                                </ContentView>
+                            </CollectionView.EmptyView>
+
+
+                        </CollectionView>
+                    </Frame>
+                </StackLayout>
+
+                <controls:CustomActivityIndicator Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                                                  IsVisible="{Binding IsBusy}"
+                                                  Color="{x:Static marvelApp:Theme.PrimaryColor}" />
+            </Grid>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

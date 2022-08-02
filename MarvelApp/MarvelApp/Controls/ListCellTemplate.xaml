@@ -1,0 +1,53 @@
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:marvelApp="clr-namespace:MarvelApp;assembly=MarvelApp"
+      xmlns:controls="clr-namespace:MarvelApp.Controls;assembly=MarvelApp"
+      xmlns:converters="clr-namespace:MarvelApp.Converters;assembly=MarvelApp"
+      x:Class="MarvelApp.Controls.ListCellTemplate"
+      x:Name="ThisControl"
+      ColumnSpacing="{x:Static marvelApp:Theme.SmallSpacing}"
+      RowSpacing="{x:Static marvelApp:Theme.InterlineSpacing}">
+    <Grid.Resources>
+        <converters:ImageSourceConverter
+            x:Key="ImageSourceConverter" />
+    </Grid.Resources>
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="*" />
+        <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+
+    <Frame Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"
+           BorderColor="{x:Static marvelApp:Theme.DividerColor}"
+           HasShadow="False"
+           CornerRadius="30"
+           HeightRequest="60"
+           WidthRequest="60"
+           HorizontalOptions="Start"
+           Padding="0"
+           IsClippedToBounds="True">
+        <Image
+            Source="{Binding ImageSource, Source={x:Reference ThisControl}, Converter={StaticResource ImageSourceConverter}}"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Aspect="Fill" />
+    </Frame>
+
+    <Label Grid.Column="1" Grid.Row="0"
+           Text="{Binding Title, Source={x:Reference ThisControl}}"
+           VerticalOptions="Center"
+           Style="{x:StaticResource SmallLabelStyle}" />
+
+    <Label Grid.Column="1" Grid.Row="1"
+           VerticalOptions="Center"
+           Text="{Binding Subtitle, Source={x:Reference ThisControl}, FallbackValue={x:Null}}"
+           Style="{x:StaticResource MiniLightLabelStyle}" />
+
+    <controls:Divider Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"
+                      HorizontalOptions="FillAndExpand"
+                      Margin="{x:Static marvelApp:Theme.SmallBottomPadding}" />
+</Grid>

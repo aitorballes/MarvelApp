@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <!-- Generic Texts -->
+    <data name="AppName" xml:space="preserve">
+        <value>MarvelApp</value>
+        <comment>Name of the application</comment>
+    </data>
+    <data name="EmptyDate" xml:space="preserve">
+        <value>Date not available</value>
+        <comment>EmptyDate label</comment>
+    </data>
+    <data name="EmptyDescription" xml:space="preserve">
+        <value>Description not available</value>
+        <comment>Empty description label</comment>
+    </data>
+    <!-- Buttons -->
+    <data name="Ok_Button_Label" xml:space="preserve">
+        <value>Ok</value>
+        <comment>Text for buttons that represents agree</comment>
+    </data>
+    <data name="Cancel_Button_Label" xml:space="preserve">
+        <value>Cancel</value>
+        <comment>Text for buttons that represents close UI</comment>
+    </data>
+    <!-- Handle error dialog title -->
+    <data name="HandleErrorDialog_Title" xml:space="preserve">
+        <value>Error!</value>
+        <comment>Handle error dialog title</comment>
+    </data>
+    <data name="HandleErrorDialog_Message" xml:space="preserve">
+        <value>An unexpected error occurred, please try again later.</value>
+        <comment>Handle error dialog default message</comment>
+    </data>
+    <!-- Home Page -->
+    <data name="HomePage_Title" xml:space="preserve">
+        <value>Home</value>
+        <comment>Home page title</comment>
+    </data>
+    <data name="HomePage_ComicsList_Title" xml:space="preserve">
+        <value>Latest comics:</value>
+        <comment>Home page, last comics list title</comment>
+    </data>
+    <data name="HomePage_SeriesList_Title" xml:space="preserve">
+        <value>Latest series:</value>
+        <comment>Home page, last seres list title</comment>
+    </data>
+    <!-- Search Page -->
+    <data name="SearchPage_Title" xml:space="preserve">
+        <value>Search</value>
+        <comment>Search page title</comment>
+    </data>
+    <data name="SearchPage_SearchEntry_Placeholder" xml:space="preserve">
+        <value>Search...</value>
+        <comment>Search page, search entry placeholder</comment>
+    </data>
+    <data name="SearchPage_Empty_Label" xml:space="preserve">
+        <value>Nothing to show. Try to search something.</value>
+        <comment>Search page, empty label</comment>
+    </data>
+    <data name="SearchPage_SearchType_Label" xml:space="preserve">
+        <value>Type:</value>
+        <comment>Search page, search type label</comment>
+    </data>
+    <data name="SearchPage_Comics_Button" xml:space="preserve">
+        <value>Comics</value>
+        <comment>Search page, comics button label</comment>
+    </data>
+    <data name="SearchPage_Series_Button" xml:space="preserve">
+        <value>Series</value>
+        <comment>Search page, series button label</comment>
+    </data>
+    <!-- Item Detail Page -->
+    <data name="ItemDetailPage_Title_Label" xml:space="preserve">
+        <value>Title:</value>
+        <comment>Item detail page, title label</comment>
+    </data>
+    <data name="ItemDetailPage_Date_Label" xml:space="preserve">
+        <value>Date:</value>
+        <comment>Item detail page, date label</comment>
+    </data>
+    <data name="ItemDetailPage_Description_Label" xml:space="preserve">
+        <value>Description:</value>
+        <comment>Item detail page, description label</comment>
+    </data>
+    <data name="ItemDetailPage_SuccessDialog_Title" xml:space="preserve">
+        <value>Done!</value>
+        <comment>Item detail page, success dialog title</comment>
+    </data>
+    <data name="ItemDetailPage_SuccessDialog_AddedMessage" xml:space="preserve">
+        <value>Item added to favourites.</value>
+        <comment>Item detail page, success dialog added message</comment>
+    </data>
+    <data name="ItemDetailPage_SuccessDialog_RemovedMessage" xml:space="preserve">
+        <value>Item removed from favourites.</value>
+        <comment>Item detail page, success dialog removed message</comment>
+    </data>
+    <!-- Favourites Page -->
+    <data name="FavouritesPage_Title" xml:space="preserve">
+        <value>Favourites</value>
+        <comment>Favourites page title</comment>
+    </data>
+    <data name="FavouritesPage_List_Title" xml:space="preserve">
+        <value>Favourites:</value>
+        <comment>Favourites page, list title</comment>
+    </data>
+    <data name="FavouritesPage_Empty_Label" xml:space="preserve">
+        <value>There are no favorites added here, try adding them from detail</value>
+        <comment>Favourites page, empty label</comment>
+    </data>
+    
+</root>
